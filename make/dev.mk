@@ -4,7 +4,7 @@
 
 setup: check-uv  ## Install Python dependencies with uv
 	@echo "$(CYAN)Installing dependencies...$(RESET)"
-	@cd $(AGENT_DIR) && uv sync --all-extras
+	@cd $(AGENT_DIR) && uv sync --python 3.13 --all-extras
 	@if [ $$? -eq 0 ]; then \
 		echo "$(GREEN)✓ Dependencies installed$(RESET)"; \
 	else \
@@ -19,7 +19,7 @@ dev:  ## Start LangGraph development server
 	fi
 	@echo "$(CYAN)Starting LangGraph development server...$(RESET)"
 	@echo "$(YELLOW)Server will be available at: http://localhost:8123$(RESET)"
-	@cd $(AGENT_DIR) && uv run langgraph dev
+	@cd $(AGENT_DIR) && uv run --python 3.13 langgraph dev
 
 test:  ## Run pytest tests
 	@if [ ! -d "$(AGENT_DIR)" ]; then \
@@ -27,7 +27,7 @@ test:  ## Run pytest tests
 		exit 1; \
 	fi
 	@echo "$(CYAN)Running tests...$(RESET)"
-	@cd $(AGENT_DIR) && uv run pytest -v
+	@cd $(AGENT_DIR) && uv run --python 3.13 --all-extras pytest -v
 	@if [ $$? -eq 0 ]; then \
 		echo "$(GREEN)✓ All tests passed$(RESET)"; \
 	else \
@@ -41,7 +41,7 @@ lint:  ## Run ruff linter
 		exit 1; \
 	fi
 	@echo "$(CYAN)Linting code...$(RESET)"
-	@cd $(AGENT_DIR) && uv run ruff check src/ tests/
+	@cd $(AGENT_DIR) && uv run --python 3.13 ruff check src/ tests/
 
 format:  ## Format code with ruff
 	@if [ ! -d "$(AGENT_DIR)" ]; then \
@@ -49,7 +49,7 @@ format:  ## Format code with ruff
 		exit 1; \
 	fi
 	@echo "$(CYAN)Formatting code...$(RESET)"
-	@cd $(AGENT_DIR) && uv run ruff format src/ tests/
+	@cd $(AGENT_DIR) && uv run --python 3.13 ruff format src/ tests/
 	@echo "$(GREEN)✓ Code formatted$(RESET)"
 
 logs:  ## Tail application logs
