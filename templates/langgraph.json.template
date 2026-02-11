@@ -1,0 +1,11 @@
+{
+  "dependencies": [
+    ".",
+    "../../shared"
+  ],
+  "graphs": {
+    "agent": "./src/graphs/main.py:graph"
+  },
+  "env": ".env",
+  "python_version": "${PYTHON_VERSION}"
+}

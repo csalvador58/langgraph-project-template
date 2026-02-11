@@ -1,0 +1,65 @@
+# LangGraph Project
+
+A LangGraph-based agent system with production-ready architecture.
+
+## Quick Start
+
+\`\`\`bash
+# Install dependencies
+make setup
+
+# Start development server
+make dev
+
+# Run tests
+make test
+\`\`\`
+
+## Project Structure
+
+- \`agents/default/\` - Main agent implementation
+  - \`src/graphs/\` - Graph definitions and subgraphs
+    - \`agent-feedback/\` - AI agent feedback loops
+    - \`human-feedback/\` - Human-in-the-loop workflows
+    - \`coordinator/\` - Multi-agent coordination
+    - \`logger/\` - Logging and observability
+  - \`src/nodes/\` - Individual workflow nodes
+  - \`src/skills/\` - Reusable skills and capabilities
+  - \`src/config/\` - Configuration management
+- \`shared/\` - Shared utilities across agents
+- \`ui/\` - User interface implementations
+
+## Environment Variables
+
+Copy \`agents/default/.env.example\` to \`agents/default/.env\` and configure:
+
+### Cloud Providers
+
+- \`LANGSMITH_API_KEY\` - For observability (optional)
+- \`OPENAI_API_KEY\` or \`ANTHROPIC_API_KEY\` - Model provider
+
+### LM Studio (Local Models)
+
+For local development with [LM Studio](https://lmstudio.ai/):
+
+1. Start LM Studio and load a model
+2. Configure in \`.env\`:
+   - \`LM_STUDIO_BASE_URL=http://localhost:1234/v1\`
+   - \`LM_STUDIO_API_KEY=lm-studio\` (any value works)
+   - \`LM_STUDIO_MODEL_NAME=local-model\` (or your model name)
+3. Copy \`src/graphs/main_graph_lmstudio.py\` to \`src/graphs/main.py\`
+4. Update \`langgraph.json\` if needed
+
+Example LM Studio graph is provided in \`src/graphs/main_graph_lmstudio.py\`
+
+## Semantic Versioning
+
+This project uses [semantic-release](https://github.com/semantic-release/semantic-release) for automated changelog generation.
+
+Commit message format:
+- \`feat: description\` - New feature (minor version)
+- \`fix: description\` - Bug fix (patch version)
+- \`docs: description\` - Documentation only
+- \`chore: description\` - Maintenance tasks
+
+The CHANGELOG.md is automatically updated on push to main.
